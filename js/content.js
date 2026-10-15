@@ -88,6 +88,12 @@ const COUNTER = "https://count.ayaya.beauty/@ruginit?theme=original-new";
 // ---------------------------------------------------------------------
 const POSTS = [
   {
+    title: "hyprcontroller: using my desktop with a gamepad",
+    date: "2026-10-14",
+    tags: ["linux", "hyprland", "projects"],
+    url: "blog/hyprcontroller.html",
+  },
+  {
     title: "hello world (new site who dis)",
     date: "2026-10-01",
     tags: ["meta"],

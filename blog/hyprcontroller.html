@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hyprcontroller: using my desktop with a gamepad · ruginit</title>
+  <meta name="description" content="A little project for controlling my Hyprland desktop with a gamepad, locally or through Moonlight. Still a work in progress.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ruginit">
+  <meta property="og:title" content="hyprcontroller: using my desktop with a gamepad">
+  <meta property="og:description" content="A little project for controlling my Hyprland desktop with a gamepad, locally or through Moonlight. Still a work in progress.">
+  <meta property="og:url" content="https://ruginit.xyz/blog/hyprcontroller.html">
+  <meta property="og:image" content="https://ruginit.xyz/assets/og/default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ff9ecf">
+  <link rel="icon" href="../assets/images/ruginit.gif">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="blog" data-root="../">
+  <div class="wrap">
+    <div id="header"></div>
+
+    <div class="grid">
+      <main>
+        <section class="panel">
+          <div class="panel-title"><span>~ blog</span><span>2026-10-14</span></div>
+          <article class="panel-body prose">
+
+            <h1>hyprcontroller: using my desktop with a gamepad</h1>
+            <div class="meta">2026-10-14 · #linux #hyprland #projects</div>
+
+            <p>I started a new project! It's called <b>hyprcontroller</b>, and the idea is to use my Hyprland desktop with a controller. It's still a work in progress, but it's already doing enough that I wanted to write something about it.</p>
+
+            <h2>Why I wanted this</h2>
+            <p>I use Sunshine and Moonlight to stream games from my PC. Playing with a controller is fine, but sometimes my workspaces have some window bugs so I need to switch workspaces or use another window. On my laptop, I have the same Hyprland shortcuts, so those can get in the way of controlling the host. On my phone, I don't exactly have a mouse next to me either, haha.</p>
+
+            <p>I wanted to open a little desktop menu with the controller, do whatever I needed, and go back to the game.</p>
+
+            <img src="../assets/images/blog/hyprcontroller/switcher.png" alt="hyprcontroller window picker on workspace 2, with Omikuji selected above Steam and Xbox button hints below" width="1616" height="838" loading="lazy">
+            <p class="credit">The current picker, thanks to codex for the UI.</p>
+
+            <h2>What it does so far</h2>
+            <p>Hold both stick buttons (<b>L3 + R3</b>), then release them to open the switcher. From there, I can change workspaces with <b>LB / RB</b>, pick a window with the D-pad or left stick, and select it with <b>A</b>.</p>
+
+            <p>After selecting a window, it stays in desktop mode. The left stick moves the mouse, the right stick scrolls, <b>A</b> is left click, and <b>B</b> is right click. Holding A lets me drag things too.</p>
+
+            <p><b>Y</b> opens the on-screen keyboard from my existing Quickshell setup, so I can move the pointer and click its keys. That part depends on a compatible shell keyboard; hyprcontroller doesn't include its own yet. <b>Start</b> brings the window switcher back. When I'm done, I return to the game workspace, hold L3 + R3 again, and release to give the controller back to the game.</p>
+
+            <h2>Some issues...</h2>
+            <p>One of the first problems showed up in HoloCure. I could navigate the desktop menu, but the game underneath was reacting to those same buttons. That happened both with a local controller and through Moonlight.</p>
+
+            <p>The current version uses a virtual controller to pass input to the game during gameplay and keep it neutral while I'm using desktop mode. Desktop mode also stays active after changing windows or workspaces, until I explicitly return to playing. That fixed the behavior I was seeing in HoloCure. It doesn't pause the game, though.</p>
+
+            <h2>Still working on it!</h2>
+            <p>It's built with Python and Quickshell, and so far I've been testing it on my own CachyOS setup, with an Xbox 360 controller and Sunshine/Moonlight. I still need to try more games, controllers, and screen setups before I can say how well it works elsewhere.</p>
+
+            <p>I'm happy with how it's going so far. I'll add more here once I've spent some more time using it ✦</p>
+
+            <a class="back" href="../blog.html">← back to all posts</a>
+          </article>
+        </section>
+      </main>
+
+      <aside id="sidebar"></aside>
+    </div>
+
+    <div id="footer"></div>
+  </div>
+
+  <script src="../js/content.js"></script>
+  <script src="../js/site.js"></script>
+</body>
+</html>
