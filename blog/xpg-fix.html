@@ -28,13 +28,14 @@
 
             <!-- ============ YOUR POST STARTS HERE ============ -->
             <h1>fixing an XPG Gammix S70 Blade when the vendor tool can't see it</h1>
-            <div class="meta">2026-10-01 · #hardware #linux #nvme<br>the fix itself: night of 2026-08-22 → 08-23</div>
+            <div class="meta">2026-10-01 · #hardware #linux #nvme<br>the fix itself: night of 2026-08-22 → 08-23<br>updated 2026-10-15: added Komboss's recovery report below</div>
 
             <!-- TL;DR box: the short version, for people who land here from google -->
             <div class="tldr">
               <div class="label">tl;dr</div>
               <p><b>Symptoms:</b> XPG Gammix S70 Blade on firmware <code>3.2.J.JE</code>. Windows still sees it, but ADATA SSD ToolBox and the official firmware updater don't list it at all.</p>
               <p><b>What fixed it:</b> we got firmware <code>3.2.J.PJ</code> straight from ADATA's update server, dug the <code>.fw</code> file out of the updater (its zip was broken, so we rebuilt it), and flashed it with <code>nvme-cli</code> from a Linux live USB booted with <code>nvme_core.multipath=0</code>.</p>
+              <p><b>Drive keeps disappearing?</b> A reader found another way using controller recovery mode and MPutility. See <a href="#plan-b">Plan B below</a>. Treat that procedure as erasing the drive; it's a hardware recovery report, not a way to recover your files.</p>
               <p><b>This is not a tutorial.</b> There's no short version of this one. It's what worked for us, how we did it, and how you could do the same if you have the same problem. If you're not really into computers, give this page to your AI of choice and let it help you with your exact drive. That alone saves a lot of time. You can also do it all by hand.</p>
             </div>
 
@@ -151,6 +152,33 @@ sudo nvme fw-commit /dev/nvme0 --slot=1 --action=1</code></pre>
 sudo mkdir -p /mnt/xpg
 sudo mount -t ntfs3 /dev/nvme0n1p2 /mnt/xpg</code></pre>
             <p>(That <code>mkdir</code> was needed because the live session had forgotten the mount folder, which looked like another failure but wasn't.) Then he booted Windows, created a folder, and it worked. He started reinstalling his games.</p>
+
+            <h2 id="plan-b">Plan B: when the drive won't stay detected</h2>
+            <p>Someone actually found this post and contacted me on Discord! <b>Komboss</b> (<code>@komboss</code>) was trying to revive another S70 Blade, but his drive started disappearing from Linux about ten seconds after detection. He couldn't use the firmware-update route above with it behaving like that.</p>
+
+            <p>He got it working through a different route: a bridge between specific contacts on the drive to enter recovery mode, followed by a flash with <b>InnoGrit IG5236 MPutility</b>. He found the tool and the reports on <a href="https://www.usbdev.ru/files/innogrit/ig5236mputility/">this USBDev page</a>. Most of the discussion is in Russian.</p>
+
+            <blockquote class="warn"><b>Treat this as a destructive procedure.</b> The recovery reports describe erasing and reinitializing the SSD. If you still need files from the drive, stop before trying it and consider professional data recovery. The wrong firmware, configuration, or bridge contacts can make things worse or permanently damage the drive.</blockquote>
+
+            <h3>What Komboss reported</h3>
+            <p>After the recovery, he said the drive worked again, but no longer identified itself as ADATA. The result he shared showed:</p>
+            <ul>
+              <li>model: <code>K3</code></li>
+              <li>firmware: <code>3.W.J.E4</code></li>
+              <li>NAND: <code>Hynix-3DV7</code></li>
+            </ul>
+            <p>He also reported a 100% health reading in CrystalDiskInfo. That is the reading he saw, not proof that the NAND became new again or that the drive will stay reliable. This recovered the use of the SSD; it didn't bring back the original files.</p>
+
+            <h3>About the changed name</h3>
+            <p>There is an interesting detail in the comments: <a href="https://www.usbdev.ru/files/innogrit/ig5236mputility/#comment-125613">squeezz's S70 Blade report</a> says the device name can be edited in the tool's advanced mode. <a href="https://www.usbdev.ru/files/innogrit/ig5236mputility/#comment-127272">Mikhail reports the same on a Netac NV7000</a>. So the generic name may be editable. Changing that label alone doesn't prove that ADATA's ToolBox or official updater will recognize the drive again; we haven't checked that.</p>
+
+            <h3>Before using those reports</h3>
+            <p>The page lists packages for different NAND types. It even lists both MPutility <code>v1.0.0.36</code> and <code>v1.0.2.4</code> with Hynix firmware <code>3.W.J.E4</code>, so that firmware string alone doesn't identify Komboss's exact tool version.</p>
+            <p>I don't yet have his exact package, configuration, or a clear photo identifying the contacts he bridged. This section records his result, rather than giving a pin-by-pin procedure. Don't assume that contacts described for another board are the right ones on yours, or that sharing the IG5236 controller makes every firmware package compatible.</p>
+
+            <p>For more context, <a href="https://www.usbdev.ru/files/innogrit/ig5236mputility/#comment-125613">squeezz describes an S70 Blade recovery</a>, and <a href="https://www.usbdev.ru/files/innogrit/ig5236mputility/#comment-128426">Kirito documents a different IG5236 SSD</a>, including the NAND, tool, data-loss warning, and checks afterward. Those are individual reports, not a guarantee for every drive.</p>
+
+            <p>Thanks to <b>Komboss</b> on Discord for finding this route, sharing what happened, and letting me include it here. My friend and I didn't test this method ourselves, but hopefully his experience helps someone whose drive won't stay detected long enough for our original approach.</p>
 
             <h2>What I learned</h2>
             <ul>
