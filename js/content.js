@@ -132,6 +132,12 @@ const HOSTING = [
 // ---------------------------------------------------------------------
 const PROJECTS = [
   {
+    name: "hyprcontroller",
+    desc: "Control your Hyprland desktop with a gamepad, locally or through Sunshine/Moonlight.",
+    live: "",
+    source: "https://github.com/Multex/hyprcontroller",
+  },
+  {
     name: "Amia",
     desc: "Simple self-hosted video downloader with web UI using yt-dlp and SomeDL",
     live: "https://amia.ruginit.xyz/",
