@@ -18,7 +18,7 @@ const SITE = {
   name: "ruginit",
   tagline: "electronic eng. student · teacher · dumb",
   avatar: "assets/videos/hutao-eat.mp4",   // .gif, .png, or .mp4 (plays like a gif)
-  updated: "01.10.2026",
+  updated: "02.11.2026",
 };
 
 
