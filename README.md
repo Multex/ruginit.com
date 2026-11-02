@@ -1,4 +1,4 @@
-# ruginit.dev
+# ruginit.com
 
 Plain HTML + CSS + JS. No frameworks, no build step. Open `index.html` in a browser and that's the site.
 
@@ -50,8 +50,8 @@ Adding something = copy the `{ ... },` block above, paste, edit. Mind the commas
 
 Every page has `og:` meta tags in its `<head>`. They have to be written in the
 html (Discord doesn't run js, so `site.js` can't make them). They use full
-`https://ruginit.xyz/...` urls, so if the domain changes, search and replace
-`https://ruginit.xyz/` in all .html files. Default image: `assets/og/default.jpg`.
+`https://ruginit.com/...` urls, so if the domain changes, search and replace
+`https://ruginit.com/` in all .html files. Default image: `assets/og/default.jpg`.
 
 ## Adding a new page
 

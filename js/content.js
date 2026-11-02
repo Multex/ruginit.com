@@ -121,7 +121,7 @@ const HOSTING = [
   {
     name: "Patchy",
     desc: "Temporary and light file uploader.",
-    live: "",     // e.g. "https://patchy.ruginit.xyz"
+    live: "",     // e.g. "https://patchy.ruginit.com"
     source: "https://codeberg.org/Fijxu/patchy",
   },
 ];
@@ -140,7 +140,7 @@ const PROJECTS = [
   {
     name: "Amia",
     desc: "Simple self-hosted video downloader with web UI using yt-dlp and SomeDL",
-    live: "https://amia.ruginit.xyz/",
+    live: "https://amia.ruginit.com/",
     source: "https://github.com/Multex/amia",
   },
   {
@@ -152,8 +152,8 @@ const PROJECTS = [
   {
     name: "this website",
     desc: "Plain html + css + js",
-    live: "https://ruginit.xyz",
-    source: "https://github.com/Multex/ruginit.dev",
+    live: "https://ruginit.com",
+    source: "https://github.com/Multex/ruginit.com",
   },
 ];
 
